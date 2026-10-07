@@ -26,7 +26,7 @@
   "inLanguage": "ko"
 }
 </script>
-<meta name="root-build" content="r2 (2026-09-11) no-redirect">
+<meta name="root-build" content="r3 (2026-10-07) js-redirect">
 <meta name="theme-color" content="#0f3d3e">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png">
@@ -48,6 +48,21 @@
   .tags{margin-top:30px;font-size:12.5px;color:#7b8888;line-height:2;}
   .tags b{color:#0f3d3e;font-weight:700;}
 </style>
+<script>
+/* 사람이 들어오면 새 주소로 바로 보낸다.
+   ─ 검색 로봇이 읽는 <meta> 들(네이버 사이트 확인 등)은 그대로 남겨둬야 하므로
+     meta refresh 가 아니라 자바스크립트로 보낸다. 자바스크립트를 돌리지 않는
+     로봇은 이 페이지를 예전처럼 그대로 읽고, 사람만 넘어간다.
+   ─ location.replace 를 쓰는 이유: 뒤로가기를 눌렀을 때 이 페이지로 돌아와
+     다시 넘어가는 무한 되풀이를 막기 위해서다.
+   ─ 주소 끝에 ?stay 를 붙이면 넘어가지 않는다(이 안내 페이지를 직접 볼 때 씀). */
+(function(){
+  try{
+    if(location.search.indexOf('stay') !== -1) return;
+    location.replace('https://heritagemap.co.kr/');
+  }catch(e){}
+})();
+</script>
 </head>
 <body>
   <div class="box">
@@ -57,6 +72,7 @@
       전국 국가유산 <b>14,000여 건</b>의 위치를 지도에서 확인하세요.
     </p>
     <a class="go" href="https://heritagemap.co.kr/">지도 열기 →</a>
+    <p class="note" style="margin-top:14px">잠시 뒤 자동으로 지도로 이동합니다. 넘어가지 않으면 위 단추를 눌러주세요.</p>
     <p class="note">지도에서 내 주변 국가유산을 찾고, 현장에서 방문 인증을 할 수 있어요.</p>
     <p class="tags">
       <b>자연유산</b> 천연기념물 · 명승<br>
